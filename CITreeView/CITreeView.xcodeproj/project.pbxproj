@@ -16,6 +16,8 @@
 		187EB6DB2019164F00C8DC19 /* CITreeViewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EB6DA2019164F00C8DC19 /* CITreeViewNode.swift */; };
 		187EB6DD2019169B00C8DC19 /* CITreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EB6DC2019169B00C8DC19 /* CITreeViewController.swift */; };
 		187EB6DF2019186200C8DC19 /* CITreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EB6DE2019186200C8DC19 /* CITreeView.swift */; };
+		187EB6E320191BFF00C8DC19 /* CITreeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EB6E120191BFF00C8DC19 /* CITreeViewCell.swift */; };
+		187EB6E420191BFF00C8DC19 /* CITreeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 187EB6E220191BFF00C8DC19 /* CITreeViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		187EB6DA2019164F00C8DC19 /* CITreeViewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITreeViewNode.swift; sourceTree = "<group>"; };
 		187EB6DC2019169B00C8DC19 /* CITreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITreeViewController.swift; sourceTree = "<group>"; };
 		187EB6DE2019186200C8DC19 /* CITreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITreeView.swift; sourceTree = "<group>"; };
+		187EB6E120191BFF00C8DC19 /* CITreeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITreeViewCell.swift; sourceTree = "<group>"; };
+		187EB6E220191BFF00C8DC19 /* CITreeViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CITreeViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 		187EB6C420190F8E00C8DC19 /* CITreeView */ = {
 			isa = PBXGroup;
 			children = (
+				187EB6E020191BE600C8DC19 /* Views */,
 				187EB6D72019102C00C8DC19 /* CITreeViewClasses */,
 				187EB6C520190F8E00C8DC19 /* AppDelegate.swift */,
 				187EB6C720190F8E00C8DC19 /* ViewController.swift */,
@@ -82,6 +87,15 @@
 				187EB6DE2019186200C8DC19 /* CITreeView.swift */,
 			);
 			path = CITreeViewClasses;
+			sourceTree = "<group>";
+		};
+		187EB6E020191BE600C8DC19 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				187EB6E120191BFF00C8DC19 /* CITreeViewCell.swift */,
+				187EB6E220191BFF00C8DC19 /* CITreeViewCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +159,7 @@
 			files = (
 				187EB6D020190F8E00C8DC19 /* LaunchScreen.storyboard in Resources */,
 				187EB6CD20190F8E00C8DC19 /* Assets.xcassets in Resources */,
+				187EB6E420191BFF00C8DC19 /* CITreeViewCell.xib in Resources */,
 				187EB6CB20190F8E00C8DC19 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -160,6 +175,7 @@
 				187EB6D92019107A00C8DC19 /* CITreeViewData.swift in Sources */,
 				187EB6DD2019169B00C8DC19 /* CITreeViewController.swift in Sources */,
 				187EB6C820190F8E00C8DC19 /* ViewController.swift in Sources */,
+				187EB6E320191BFF00C8DC19 /* CITreeViewCell.swift in Sources */,
 				187EB6DF2019186200C8DC19 /* CITreeView.swift in Sources */,
 				187EB6C620190F8E00C8DC19 /* AppDelegate.swift in Sources */,
 			);
