@@ -15,6 +15,7 @@
 		187EB6D92019107A00C8DC19 /* CITreeViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EB6D82019107A00C8DC19 /* CITreeViewData.swift */; };
 		187EB6DB2019164F00C8DC19 /* CITreeViewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EB6DA2019164F00C8DC19 /* CITreeViewNode.swift */; };
 		187EB6DD2019169B00C8DC19 /* CITreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EB6DC2019169B00C8DC19 /* CITreeViewController.swift */; };
+		187EB6DF2019186200C8DC19 /* CITreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EB6DE2019186200C8DC19 /* CITreeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		187EB6D82019107A00C8DC19 /* CITreeViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITreeViewData.swift; sourceTree = "<group>"; };
 		187EB6DA2019164F00C8DC19 /* CITreeViewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITreeViewNode.swift; sourceTree = "<group>"; };
 		187EB6DC2019169B00C8DC19 /* CITreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITreeViewController.swift; sourceTree = "<group>"; };
+		187EB6DE2019186200C8DC19 /* CITreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITreeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				187EB6D82019107A00C8DC19 /* CITreeViewData.swift */,
 				187EB6DA2019164F00C8DC19 /* CITreeViewNode.swift */,
 				187EB6DC2019169B00C8DC19 /* CITreeViewController.swift */,
+				187EB6DE2019186200C8DC19 /* CITreeView.swift */,
 			);
 			path = CITreeViewClasses;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 				187EB6D92019107A00C8DC19 /* CITreeViewData.swift in Sources */,
 				187EB6DD2019169B00C8DC19 /* CITreeViewController.swift in Sources */,
 				187EB6C820190F8E00C8DC19 /* ViewController.swift in Sources */,
+				187EB6DF2019186200C8DC19 /* CITreeView.swift in Sources */,
 				187EB6C620190F8E00C8DC19 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
