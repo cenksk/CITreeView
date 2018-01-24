@@ -13,6 +13,7 @@
 		187EB6CD20190F8E00C8DC19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 187EB6CC20190F8E00C8DC19 /* Assets.xcassets */; };
 		187EB6D020190F8E00C8DC19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 187EB6CE20190F8E00C8DC19 /* LaunchScreen.storyboard */; };
 		187EB6D92019107A00C8DC19 /* CITreeViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EB6D82019107A00C8DC19 /* CITreeViewData.swift */; };
+		187EB6DB2019164F00C8DC19 /* CITreeViewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EB6DA2019164F00C8DC19 /* CITreeViewNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		187EB6CF20190F8E00C8DC19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		187EB6D120190F8E00C8DC19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		187EB6D82019107A00C8DC19 /* CITreeViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITreeViewData.swift; sourceTree = "<group>"; };
+		187EB6DA2019164F00C8DC19 /* CITreeViewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITreeViewNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				187EB6D82019107A00C8DC19 /* CITreeViewData.swift */,
+				187EB6DA2019164F00C8DC19 /* CITreeViewNode.swift */,
 			);
 			path = CITreeViewClasses;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				187EB6DB2019164F00C8DC19 /* CITreeViewNode.swift in Sources */,
 				187EB6D92019107A00C8DC19 /* CITreeViewData.swift in Sources */,
 				187EB6C820190F8E00C8DC19 /* ViewController.swift in Sources */,
 				187EB6C620190F8E00C8DC19 /* AppDelegate.swift in Sources */,
