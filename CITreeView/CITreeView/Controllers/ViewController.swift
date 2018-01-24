@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     var treeView:CITreeView!
     
     let treeViewCellIdentifier = "TreeViewCellIdentifier"
+    let treeViewCellNibName = "CITreeViewCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +22,8 @@ class ViewController: UIViewController {
         treeView = CITreeView.init(frame: self.view.bounds, style: UITableViewStyle.plain)
         treeView.treeViewDelegate = self
         treeView.setDataSource(dataArray: data)
-        treeView.collapseOtherNodesWhenSelectedOneOfTheOther = true
-        treeView.register(UINib(nibName: "CITreeViewCell", bundle: nil), forCellReuseIdentifier: treeViewCellIdentifier)
+        treeView.collapseOtherNodesWhenSelectedOneOfTheOther = false
+        treeView.register(UINib(nibName: treeViewCellNibName, bundle: nil), forCellReuseIdentifier: treeViewCellIdentifier)
         self.view.addSubview(treeView)
     }
 }
@@ -63,7 +64,7 @@ extension ViewController:CITreeViewDelegate {
     }
     
     func treeView(_ tableView: CITreeView, heightForRowAt indexPath: IndexPath, withTreeViewNode treeViewNode:CITreeViewNode) -> CGFloat {
-        return UITableViewAutomaticDimension;
+        return 60;
     }
     
     func treeView(_ treeView: CITreeView, didSelectRowAt treeViewNode:CITreeViewNode) {
