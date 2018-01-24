@@ -9,7 +9,7 @@
 import UIKit
 
 class CITreeViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -21,10 +21,10 @@ class CITreeViewCell: UITableViewCell {
     
     func setupCell(level:Int)
     {
-        self.leadingConstraint.constant = leadingValueForChildrenCell * CGFloat(level - 1)
+        self.leadingConstraint.constant = leadingValueForChildrenCell * CGFloat(level + 1)
         self.layoutIfNeeded()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

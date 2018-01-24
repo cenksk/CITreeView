@@ -66,10 +66,11 @@
 		187EB6C420190F8E00C8DC19 /* CITreeView */ = {
 			isa = PBXGroup;
 			children = (
+				187EB6E620191F2200C8DC19 /* Models */,
+				187EB6E520191CFB00C8DC19 /* Controllers */,
 				187EB6E020191BE600C8DC19 /* Views */,
 				187EB6D72019102C00C8DC19 /* CITreeViewClasses */,
 				187EB6C520190F8E00C8DC19 /* AppDelegate.swift */,
-				187EB6C720190F8E00C8DC19 /* ViewController.swift */,
 				187EB6C920190F8E00C8DC19 /* Main.storyboard */,
 				187EB6CC20190F8E00C8DC19 /* Assets.xcassets */,
 				187EB6CE20190F8E00C8DC19 /* LaunchScreen.storyboard */,
@@ -81,7 +82,6 @@
 		187EB6D72019102C00C8DC19 /* CITreeViewClasses */ = {
 			isa = PBXGroup;
 			children = (
-				187EB6D82019107A00C8DC19 /* CITreeViewData.swift */,
 				187EB6DA2019164F00C8DC19 /* CITreeViewNode.swift */,
 				187EB6DC2019169B00C8DC19 /* CITreeViewController.swift */,
 				187EB6DE2019186200C8DC19 /* CITreeView.swift */,
@@ -96,6 +96,22 @@
 				187EB6E220191BFF00C8DC19 /* CITreeViewCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		187EB6E520191CFB00C8DC19 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				187EB6C720190F8E00C8DC19 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		187EB6E620191F2200C8DC19 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				187EB6D82019107A00C8DC19 /* CITreeViewData.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
