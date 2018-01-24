@@ -12,6 +12,7 @@
 		187EB6CB20190F8E00C8DC19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 187EB6C920190F8E00C8DC19 /* Main.storyboard */; };
 		187EB6CD20190F8E00C8DC19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 187EB6CC20190F8E00C8DC19 /* Assets.xcassets */; };
 		187EB6D020190F8E00C8DC19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 187EB6CE20190F8E00C8DC19 /* LaunchScreen.storyboard */; };
+		187EB6D92019107A00C8DC19 /* CITreeViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EB6D82019107A00C8DC19 /* CITreeViewData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		187EB6CC20190F8E00C8DC19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		187EB6CF20190F8E00C8DC19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		187EB6D120190F8E00C8DC19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		187EB6D82019107A00C8DC19 /* CITreeViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITreeViewData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		187EB6C420190F8E00C8DC19 /* CITreeView */ = {
 			isa = PBXGroup;
 			children = (
+				187EB6D72019102C00C8DC19 /* CITreeViewClasses */,
 				187EB6C520190F8E00C8DC19 /* AppDelegate.swift */,
 				187EB6C720190F8E00C8DC19 /* ViewController.swift */,
 				187EB6C920190F8E00C8DC19 /* Main.storyboard */,
@@ -62,6 +65,14 @@
 				187EB6D120190F8E00C8DC19 /* Info.plist */,
 			);
 			path = CITreeView;
+			sourceTree = "<group>";
+		};
+		187EB6D72019102C00C8DC19 /* CITreeViewClasses */ = {
+			isa = PBXGroup;
+			children = (
+				187EB6D82019107A00C8DC19 /* CITreeViewData.swift */,
+			);
+			path = CITreeViewClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				187EB6D92019107A00C8DC19 /* CITreeViewData.swift in Sources */,
 				187EB6C820190F8E00C8DC19 /* ViewController.swift in Sources */,
 				187EB6C620190F8E00C8DC19 /* AppDelegate.swift in Sources */,
 			);
