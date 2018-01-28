@@ -1,0 +1,4 @@
+osx_image: xcode9.2
+language: swift
+script:
+- xctool test -project CITreeView/CITreeView/CITreeView.xcodeproj -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
