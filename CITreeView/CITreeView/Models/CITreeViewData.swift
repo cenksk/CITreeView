@@ -35,51 +35,50 @@ extension CITreeViewData {
     
     static func getDefaultCITreeViewData() -> [CITreeViewData] {
         
-        let subChild121 = CITreeViewData(name: "Child 1.2.1")
-        let subChild122 = CITreeViewData(name: "Child 1.2.2")
-        let subChild123 = CITreeViewData(name: "Child 1.2.3")
-        let subChild124 = CITreeViewData(name: "Child 1.2.4")
+        let subChild121 = CITreeViewData(name: "Albea")
+        let subChild122 = CITreeViewData(name: "Egea")
+        let subChild123 = CITreeViewData(name: "Linea")
+        let subChild124 = CITreeViewData(name: "Siena")
         
-        let child11 = CITreeViewData(name: "Child 1.1")
-        let child12 = CITreeViewData(name: "Child 1.2", children:[subChild121, subChild122, subChild123, subChild124])
-        let child13 = CITreeViewData(name: "Child 1.3")
-        let child14 = CITreeViewData(name: "Child 1.4")
-        let parent1 = CITreeViewData(name: "Parent 1", children: [child11, child12, child13, child14])
+        let child11 = CITreeViewData(name: "Volvo")
+        let child12 = CITreeViewData(name: "Fiat", children:[subChild121, subChild122, subChild123, subChild124])
+        let child13 = CITreeViewData(name: "Alfa Romeo")
+        let child14 = CITreeViewData(name: "Mercedes")
+        let parent1 = CITreeViewData(name: "Sedan", children: [child11, child12, child13, child14])
+        
+        let subChild221 = CITreeViewData(name: "Discovery")
+        let subChild222 = CITreeViewData(name: "Evoque")
+        let subChild223 = CITreeViewData(name: "Defender")
+        let subChild224 = CITreeViewData(name: "Freelander")
+        
+        let child21 = CITreeViewData(name: "GMC")
+        let child22 = CITreeViewData(name: "Land Rover" , children: [subChild221,subChild222,subChild223,subChild224])
+        let parent2 = CITreeViewData(name: "SUV", children: [child21, child22])
         
         
-        let child21 = CITreeViewData(name: "Child 2.1")
-        let child22 = CITreeViewData(name: "Child 2.2")
-        let parent2 = CITreeViewData(name: "Parent 2", children: [child21, child22])
+        let child31 = CITreeViewData(name: "Wolkswagen")
+        let child32 = CITreeViewData(name: "Toyota")
+        let child33 = CITreeViewData(name: "Dodge")
+        let parent3 = CITreeViewData(name: "Truck", children: [child31, child32,child33])
         
+        let parent4 = CITreeViewData(name: "Van")
         
-        let subChild321 = CITreeViewData(name: "Child 3.2.1")
-        let subChild322 = CITreeViewData(name: "Child 3.2.2")
-        let subChild323 = CITreeViewData(name: "Child 3.2.3")
-        let subChild324 = CITreeViewData(name: "Child 3.2.4")
+        let subChildChild5321 = CITreeViewData(name: "Carrera")
+        let subChildChild5322 = CITreeViewData(name: "Carrera 4 GTS")
+        let subChildChild5323 = CITreeViewData(name: "Targa 4")
+        let subChildChild5324 = CITreeViewData(name: "Turbo S")
         
-        let child31 = CITreeViewData(name: "Child 3.1")
-        let child32 = CITreeViewData(name: "Child 3.2", children: [subChild321, subChild322,subChild323,subChild324])
-        let child33 = CITreeViewData(name: "Child 3.3")
-        let parent3 = CITreeViewData(name: "Parent 3", children: [child31, child32,child33])
+        let subChild531 = CITreeViewData(name: "Cayman")
+        let subChild532 = CITreeViewData(name: "911",children:[subChildChild5321,subChildChild5322,subChildChild5323,subChildChild5324])
         
-        let parent4 = CITreeViewData(name: "Parent 4")
-        
-        let subChildChild5321 = CITreeViewData(name: "Child 5.3.2.1")
-        let subChildChild5322 = CITreeViewData(name: "Child 5.3.2.2")
-        let subChildChild5323 = CITreeViewData(name: "Child 5.3.2.3")
-        let subChildChild5324 = CITreeViewData(name: "Child 5.3.2.4")
-        
-        let subChild531 = CITreeViewData(name: "Child 5.3.1")
-        let subChild532 = CITreeViewData(name: "Child 5.3.2",children:[subChildChild5321,subChildChild5322,subChildChild5323,subChildChild5324])
-        
-        let child51 = CITreeViewData(name: "Child 5.1")
-        let child52 = CITreeViewData(name: "Child 5.2")
-        let child53 = CITreeViewData(name: "Child 5.3", children: [subChild531, subChild532])
-        let child54 = CITreeViewData(name: "Child 5.4")
-        let child55 = CITreeViewData(name: "Child 5.5")
-        let parent5 = CITreeViewData(name: "Parent 5",children:[child51,child52,child53,child54,child55])
+        let child51 = CITreeViewData(name: "Renault")
+        let child52 = CITreeViewData(name: "Ferrari")
+        let child53 = CITreeViewData(name: "Porshe", children: [subChild531, subChild532])
+        let child54 = CITreeViewData(name: "Maserati")
+        let child55 = CITreeViewData(name: "Bugatti")
+        let parent5 = CITreeViewData(name: "Sports Car",children:[child51,child52,child53,child54,child55])
 
         
-        return [parent1,parent2,parent3,parent4,parent5]
+        return [parent5,parent2,parent1,parent3,parent4]
     }
 }

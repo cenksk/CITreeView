@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         treeView = CITreeView.init(frame: self.view.bounds, style: UITableViewStyle.plain)
         treeView.treeViewDelegate = self
         treeView.treeViewDataSource = self
-        treeView.collapseNoneSelectedRows = true
+        treeView.collapseNoneSelectedRows = false
         treeView.register(UINib(nibName: treeViewCellNibName, bundle: nil), forCellReuseIdentifier: treeViewCellIdentifier)
         self.view.addSubview(treeView)
     }

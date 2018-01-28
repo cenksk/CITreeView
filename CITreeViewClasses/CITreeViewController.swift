@@ -8,24 +8,24 @@
 
 import UIKit
 
-protocol CITreeViewControllerDelegate {
-    func getChildrenForTreeViewNode(withIndexPath indexPath:IndexPath , andItem item:AnyObject) -> [AnyObject]
+protocol CITreeViewControllerDelegate : NSObjectProtocol {
+    func getChildren(forTreeViewNodeItem item:AnyObject, with indexPath:IndexPath) -> [AnyObject]
     func willExpandTreeViewNode(treeViewNode:CITreeViewNode, atIndexPath: IndexPath)
     func willCollapseTreeViewNode(treeViewNode:CITreeViewNode, atIndexPath: IndexPath)
 }
 
-class CITreeViewController: NSObject {
+class CITreeViewController:NSObject  {
     
     var treeViewNodes:[CITreeViewNode] = []
     var indexPathsArray:[IndexPath] = []
-    var treeViewControllerDelegate:CITreeViewControllerDelegate?
+    weak var treeViewControllerDelegate:CITreeViewControllerDelegate?
     
     init(treeViewNodes : [CITreeViewNode]) {
         self.treeViewNodes = treeViewNodes
     }
     
     //MARK: Tree View Nodes Functions
-    func getTreeViewNodeForItem(treeViewNodeItem item:AnyObject){
+    func addTreeViewNode(with item:AnyObject){
         let treeViewNode = CITreeViewNode(item: item)
         let hasNodeBefore = treeViewNodes.filter{$0 == treeViewNode}
         
@@ -34,95 +34,98 @@ class CITreeViewController: NSObject {
         }
     }
     
-    func getTreeViewNodeFromArray(atIndex:Int)  -> CITreeViewNode
+    func getTreeViewNode(atIndex index: Int) -> CITreeViewNode
     {
-        return treeViewNodes[atIndex]
+        return treeViewNodes[index]
     }
     
-    func insertTreeViewNode(treeNodeItem item:AnyObject, index : Int)
+    func insertTreeViewNode(with item:AnyObject, to index : Int)
     {
         let treeViewNode = CITreeViewNode(item: item)
         treeViewNodes.insert(treeViewNode, at: index)
     }
     
-    func removeTreeNodeAtWithRange(startIndex:Int , endIndex:Int)
+    func removeTreeViewNodesAtRange(from start:Int , to end:Int)
     {
-        treeViewNodes.removeSubrange(startIndex ... endIndex)
+        treeViewNodes.removeSubrange(start ... end)
     }
     
-    func setExpandOrCollapseForTreeViewNode(atIndex:Int){
-        treeViewNodes[atIndex].expand = !treeViewNodes[atIndex].expand
+    func setExpandTreeViewNode(atIndex index:Int){
+        treeViewNodes[index].expand = true
     }
     
-    func setLevelForTreeViewNode(atIndex:Int, level:Int){
-        treeViewNodes[atIndex].level = level + 1
+    func setCollapseTreeViewNode(atIndex index:Int){
+        treeViewNodes[index].expand = false
+    }
+    
+    func setLevelTreeViewNode(atIndex index:Int, to level:Int){
+        treeViewNodes[index].level = level + 1
     }
     
     // MARK: Expand Rows
     
-    func addIndexPathToTreeView(willAddIndexPathRow:Int, willAddTreeNode:AnyObject, parentTreeViewNode:CITreeViewNode){
-        let indexPath = IndexPath(row: willAddIndexPathRow , section: 0)
+    func addIndexPath(withRow row:Int){
+        let indexPath = IndexPath(row: row , section: 0)
         indexPathsArray.append(indexPath)
-        insertTreeViewNode(treeNodeItem: willAddTreeNode, index: willAddIndexPathRow)
-        setLevelForTreeViewNode(atIndex: willAddIndexPathRow, level:parentTreeViewNode.level)
     }
     
-    func expandRows(indexPath:IndexPath, selectedTreeViewNode:CITreeViewNode){
-        let childrensOfSelectedTreeViewNode = self.treeViewControllerDelegate?.getChildrenForTreeViewNode(withIndexPath: indexPath, andItem: selectedTreeViewNode.item)
+    func expandRows(atIndexPath indexPath:IndexPath, with selectedTreeViewNode:CITreeViewNode){
+        let children = self.treeViewControllerDelegate?.getChildren(forTreeViewNodeItem: selectedTreeViewNode.item, with: indexPath)
         indexPathsArray = [IndexPath]()
-        var incrementIndexPath = indexPath.row + 1
+        var row = indexPath.row + 1
         
-        if (childrensOfSelectedTreeViewNode?.count)! > 0 {
+        if (children?.count)! > 0 {
             self.treeViewControllerDelegate?.willExpandTreeViewNode(treeViewNode: selectedTreeViewNode, atIndexPath: indexPath)
-            setExpandOrCollapseForTreeViewNode(atIndex: indexPath.row)
+            setExpandTreeViewNode(atIndex: indexPath.row)
         }
         
-        for treeNode in childrensOfSelectedTreeViewNode!{
-            addIndexPathToTreeView(willAddIndexPathRow: incrementIndexPath, willAddTreeNode: treeNode, parentTreeViewNode: selectedTreeViewNode)
-            incrementIndexPath += 1
+        for item in children!{
+            addIndexPath(withRow: row)
+            insertTreeViewNode(with: item, to: row)
+            setLevelTreeViewNode(atIndex: row, to: selectedTreeViewNode.level)
+            row += 1
         }
     }
     
     // MARK: Collapse Rows
-    func removeIndexPathFromTreeView( willAddIndexPathRow:inout Int, indexPath:IndexPath){
-        let treeViewNode = getTreeViewNodeFromArray(atIndex: willAddIndexPathRow)
-        let childrensOfDataItemArray = self.treeViewControllerDelegate?.getChildrenForTreeViewNode(withIndexPath: indexPath, andItem: treeViewNode.item)
+    func removeIndexPath(withRow row:inout Int, and indexPath:IndexPath){
+        let treeViewNode = getTreeViewNode(atIndex: row)
+        let children = self.treeViewControllerDelegate?.getChildren(forTreeViewNodeItem: treeViewNode.item, with: indexPath)
         
-        let index = IndexPath(row: willAddIndexPathRow , section: indexPath.section)
+        let index = IndexPath(row: row , section: indexPath.section)
         indexPathsArray.append(index)
-        willAddIndexPathRow += 1
+        row += 1
         
         if (treeViewNode.expand) {
-            for _ in childrensOfDataItemArray!{
-                removeIndexPathFromTreeView(willAddIndexPathRow: &willAddIndexPathRow, indexPath: indexPath)
+            for _ in children!{
+                removeIndexPath(withRow: &row, and: indexPath)
             }
         }
     }
     
-    func collapseRows(indexPath:IndexPath, selectedTreeViewNode:CITreeViewNode){
-        let childrensOfSelectedTreeViewNode = self.treeViewControllerDelegate?.getChildrenForTreeViewNode(withIndexPath: indexPath, andItem: selectedTreeViewNode.item)
+    func collapseRows(for treeViewNode :CITreeViewNode, atIndexPath indexPath:IndexPath){
+        let children = self.treeViewControllerDelegate?.getChildren(forTreeViewNodeItem: treeViewNode.item, with: indexPath)
         indexPathsArray = [IndexPath]()
-        var incrementIndexPath = indexPath.row + 1
+        var row = indexPath.row + 1
         
-        if (childrensOfSelectedTreeViewNode?.count)! > 0 {
-            self.treeViewControllerDelegate?.willCollapseTreeViewNode(treeViewNode: selectedTreeViewNode, atIndexPath: indexPath)
-            setExpandOrCollapseForTreeViewNode(atIndex: indexPath.row)
+        if (children?.count)! > 0 {
+            self.treeViewControllerDelegate?.willCollapseTreeViewNode(treeViewNode: treeViewNode, atIndexPath: indexPath)
+            setCollapseTreeViewNode(atIndex: indexPath.row)
         }
         
-        for _ in childrensOfSelectedTreeViewNode!{
-            removeIndexPathFromTreeView(willAddIndexPathRow: &incrementIndexPath,indexPath: indexPath)
+        for _ in children!{
+            removeIndexPath(withRow: &row, and: indexPath)
         }
-        
-        removeTreeNodeAtWithRange(startIndex: (indexPathsArray.first?.row)!,endIndex: (indexPathsArray.last?.row)!)
+        removeTreeViewNodesAtRange(from: (indexPathsArray.first?.row)!, to: (indexPathsArray.last?.row)!)
     }
     
-    func collapseAllRows(selectedTreeViewNode:CITreeViewNode) -> CITreeViewNode{
+    func collapseAllRows() -> CITreeViewNode?{
         indexPathsArray = [IndexPath]()
-        var collapsedTreeViewNode = selectedTreeViewNode
+        var collapsedTreeViewNode:CITreeViewNode? = nil
         var indexPath = IndexPath(row: 0, section: 0)
         for treeViewNode in treeViewNodes {
-            if  treeViewNode.expand , treeViewNode.level == 0, selectedTreeViewNode.level == 0 {
-                collapseRows(indexPath: indexPath, selectedTreeViewNode: treeViewNode)
+            if  treeViewNode.expand , treeViewNode.level == 0 {
+                collapseRows(for: treeViewNode, atIndexPath: indexPath)
                 collapsedTreeViewNode = treeViewNode
             }
             indexPath.row += 1
