@@ -3,7 +3,11 @@
 
 CITreeView created to implement and maintain that wanted TreeView structures for IOS platforms easy way.
 
+[![Twitter: @cekjacks](https://img.shields.io/badge/contanct-%40cekjacks-blue.svg)](https://twitter.com/cekjacks)
+
+
 ![](https://github.com/cenksk/CITreeView/blob/master/CITreeView_01.gif) | ![](https://github.com/cenksk/CITreeView/blob/master/CITreeView_02.gif)
+
 
 ## Installation
 
