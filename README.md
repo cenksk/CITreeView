@@ -32,10 +32,10 @@ pod install
 import CITreeView
 ```
 
-2. Add CITreeViewDelegate to your view controller
+2. Add CITreeViewDelegate and CITreeViewDataSource to your view controller
 
 ```
-class ViewController:UIViewController,CITreeViewDelegate
+class ViewController:UIViewController,CITreeViewDelegate,CITreeViewDataSource
 ```
 
 3. Initialize and configure CITreeView
@@ -43,7 +43,7 @@ class ViewController:UIViewController,CITreeViewDelegate
 ```
 let ciTreeView = CITreeView.init(frame: self.view.bounds, style: UITableViewStyle.plain)
 ciTreeView.treeViewDelegate = self
-ciTreeView.setDataSource(dataArray: yourDataArray)
+ciTreeView.treeViewDataSource = self
 self.view.addSubview(ciTreeView)
 ```
 
@@ -64,7 +64,11 @@ return dataObj.children
 return []
 }
 ```
-
+```
+func treeViewDataArray() -> [AnyObject] {
+return yourDataArray
+}
+```
 ```
 func treeView(_ tableView: CITreeView, heightForRowAt indexPath: IndexPath, withTreeViewNode treeViewNode:CITreeViewNode) -> CGFloat {
 return UITableViewAutomaticDimension;
@@ -87,7 +91,7 @@ func didCollapseTreeViewNode(treeViewNode: CITreeViewNode, atIndexPath: IndexPat
 1. You can only open one node at a time if you wish. If another parent node is selected while a node is opened, the open nodes will closed automatically.
 
 ```
-ciTreeView.collapseOtherNodesWhenSelectedOneOfTheOther = true
+ciTreeView.collapseNoneSelectedRows = true
 ```
 
 
