@@ -34,8 +34,14 @@ class CITreeViewData {
 extension CITreeViewData {
     
     static func getDefaultCITreeViewData() -> [CITreeViewData] {
+        
+        let subChild121 = CITreeViewData(name: "Child 1.2.1")
+        let subChild122 = CITreeViewData(name: "Child 1.2.2")
+        let subChild123 = CITreeViewData(name: "Child 1.2.3")
+        let subChild124 = CITreeViewData(name: "Child 1.2.4")
+        
         let child11 = CITreeViewData(name: "Child 1.1")
-        let child12 = CITreeViewData(name: "Child 1.2")
+        let child12 = CITreeViewData(name: "Child 1.2", children:[subChild121, subChild122, subChild123, subChild124])
         let child13 = CITreeViewData(name: "Child 1.3")
         let child14 = CITreeViewData(name: "Child 1.4")
         let parent1 = CITreeViewData(name: "Parent 1", children: [child11, child12, child13, child14])

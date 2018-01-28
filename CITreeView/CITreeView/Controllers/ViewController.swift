@@ -21,27 +21,42 @@ class ViewController: UIViewController {
         data = CITreeViewData.getDefaultCITreeViewData()
         treeView = CITreeView.init(frame: self.view.bounds, style: UITableViewStyle.plain)
         treeView.treeViewDelegate = self
-        treeView.setDataSource(dataArray: data)
-        treeView.collapseOtherNodesWhenSelectedOneOfTheOther = false
+        treeView.treeViewDataSource = self
+        treeView.collapseNoneSelectedRows = true
         treeView.register(UINib(nibName: treeViewCellNibName, bundle: nil), forCellReuseIdentifier: treeViewCellIdentifier)
         self.view.addSubview(treeView)
     }
 }
 
-extension ViewController:CITreeViewDelegate {
+extension ViewController : CITreeViewDelegate {
+    func treeView(_ treeView: CITreeView, heightForRowAt indexPath: IndexPath, withTreeViewNode treeViewNode: CITreeViewNode) -> CGFloat {
+        return 60
+    }
+    
+    func treeView(_ treeView: CITreeView, didSelectRowAt treeViewNode: CITreeViewNode) {
+        
+    }
     
     func willExpandTreeViewNode(treeViewNode: CITreeViewNode, atIndexPath: IndexPath) {
+        
     }
     
     func didExpandTreeViewNode(treeViewNode: CITreeViewNode, atIndexPath: IndexPath) {
+        
     }
     
     func willCollapseTreeViewNode(treeViewNode: CITreeViewNode, atIndexPath: IndexPath) {
+        
     }
     
     func didCollapseTreeViewNode(treeViewNode: CITreeViewNode, atIndexPath: IndexPath) {
+        
     }
     
+    
+}
+
+extension ViewController : CITreeViewDataSource {
     func treeView(_ treeView: CITreeView, atIndexPath indexPath: IndexPath, withTreeViewNode treeViewNode: CITreeViewNode) -> UITableViewCell {
         let cell = treeView.dequeueReusableCell(withIdentifier: treeViewCellIdentifier) as! CITreeViewCell
         let dataObj = treeViewNode.item as! CITreeViewData
@@ -49,26 +64,21 @@ extension ViewController:CITreeViewDelegate {
         cell.setupCell(level: treeViewNode.level)
         
         return cell;
+
     }
     
-    func treeViewItemForCell(withIndexPath indexPath: IndexPath) -> AnyObject {
-        return data[indexPath.row]
-    }
-    
-    
-    func treeViewItemChild(andItem item: AnyObject) -> [AnyObject] {
-        if let dataObj = item as? CITreeViewData {
+    func treeViewSelectedNodeChildren(for treeViewNodeItem: AnyObject) -> [AnyObject] {
+        if let dataObj = treeViewNodeItem as? CITreeViewData {
             return dataObj.children
         }
         return []
+
     }
     
-    func treeView(_ tableView: CITreeView, heightForRowAt indexPath: IndexPath, withTreeViewNode treeViewNode:CITreeViewNode) -> CGFloat {
-        return 60;
-    }
-    
-    func treeView(_ treeView: CITreeView, didSelectRowAt treeViewNode:CITreeViewNode) {
+    func treeViewDataArray() -> [AnyObject] {
+        return data
     }
 }
+
 
 
