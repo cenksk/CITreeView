@@ -20,7 +20,7 @@ CITreeView created to implement and maintain that wanted TreeView structures for
 1. Add additional entry to your Podfile.
 
 ```
-pod "CITreeView", "~> 1.0.0"
+pod "CITreeView", "~> 1.0"
 ```
 
 2. Pod Install
