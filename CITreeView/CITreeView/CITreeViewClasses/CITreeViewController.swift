@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CITreeViewControllerDelegate : NSObjectProtocol {
-    func getChildren(forTreeViewNodeItem item:AnyObject, with indexPath:IndexPath) -> [AnyObject]
+    func getChildren(forTreeViewNodeItem item:Any, with indexPath:IndexPath) -> [Any]
     func willExpandTreeViewNode(treeViewNode:CITreeViewNode, atIndexPath: IndexPath)
     func willCollapseTreeViewNode(treeViewNode:CITreeViewNode, atIndexPath: IndexPath)
 }
@@ -25,7 +25,7 @@ class CITreeViewController:NSObject  {
     }
     
     //MARK: Tree View Nodes Functions
-    func addTreeViewNode(with item:AnyObject){
+    func addTreeViewNode(with item:Any){
         let treeViewNode = CITreeViewNode(item: item)
         let hasNodeBefore = treeViewNodes.filter{$0 == treeViewNode}
         
@@ -39,7 +39,7 @@ class CITreeViewController:NSObject  {
         return treeViewNodes[index]
     }
     
-    func insertTreeViewNode(with item:AnyObject, to index : Int)
+    func insertTreeViewNode(with item:Any, to index : Int)
     {
         let treeViewNode = CITreeViewNode(item: item)
         treeViewNodes.insert(treeViewNode, at: index)

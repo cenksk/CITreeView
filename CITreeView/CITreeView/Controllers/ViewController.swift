@@ -57,6 +57,8 @@ extension ViewController : CITreeViewDelegate {
 }
 
 extension ViewController : CITreeViewDataSource {
+    
+    
     func treeView(_ treeView: CITreeView, atIndexPath indexPath: IndexPath, withTreeViewNode treeViewNode: CITreeViewNode) -> UITableViewCell {
         let cell = treeView.dequeueReusableCell(withIdentifier: treeViewCellIdentifier) as! CITreeViewCell
         let dataObj = treeViewNode.item as! CITreeViewData
@@ -67,7 +69,7 @@ extension ViewController : CITreeViewDataSource {
 
     }
     
-    func treeViewSelectedNodeChildren(for treeViewNodeItem: AnyObject) -> [AnyObject] {
+    func treeViewSelectedNodeChildren(for treeViewNodeItem: Any) -> [Any] {
         if let dataObj = treeViewNodeItem as? CITreeViewData {
             return dataObj.children
         }
@@ -75,7 +77,7 @@ extension ViewController : CITreeViewDataSource {
 
     }
     
-    func treeViewDataArray() -> [AnyObject] {
+    func treeViewDataArray() -> [Any] {
         return data
     }
 }
