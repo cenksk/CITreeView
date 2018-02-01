@@ -103,3 +103,8 @@ func didCollapseTreeViewNode(treeViewNode: CITreeViewNode, atIndexPath: IndexPat
 ```
 ciTreeView.collapseNoneSelectedRows = true
 ```
+
+License
+-----------------
+
+MIT licensed, Copyright (c) 2018 Cenk Işık, [@cekjacks](https://twitter.com/cekjacks)
