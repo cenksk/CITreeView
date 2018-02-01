@@ -11,9 +11,9 @@ import UIKit
 class CITreeViewNode: NSObject {
     var expand:Bool = false
     var level:Int = 0
-    var item:AnyObject
+    var item:Any
     
-    init(item:AnyObject) {
+    init(item:Any) {
         self.item = item
     }
 }
