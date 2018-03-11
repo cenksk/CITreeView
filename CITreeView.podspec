@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'CITreeView'
-  s.version          = '1.1.0'
+  s.version          = '1.2.0'
   s.summary          = 'CITreeView created to implement and maintain that wanted TreeView structures for IOS platforms easy way.'
  
   s.description      = <<-DESC
@@ -13,6 +13,6 @@ CITreeView created to implement and maintain that wanted TreeView structures for
   s.source           = { :git => 'https://github.com/cenksk/CITreeView.git', :tag => s.version.to_s }
  
   s.ios.deployment_target = '10.0'
-  s.source_files = 'CITreeView/CITreeView/CITreeViewClasses/*.swift'
+  s.source_files = 'CITreeView/CITreeView/*'
  
 end
