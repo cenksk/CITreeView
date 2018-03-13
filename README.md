@@ -4,7 +4,6 @@
 CITreeView created to implement and maintain that wanted TreeView structures for IOS platforms easy way.
 
 [![Twitter: @cekjacks](https://img.shields.io/badge/contact-%40cekjacks-blue.svg)](https://twitter.com/cekjacks)
-[![CocoaPods](https://img.shields.io/badge/pod-v1.1-blue.svg)](https://github.com/cenksk/CITreeView)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](http://cocoadocs.org/docsets/CITreeView)
 [![Build Status](https://travis-ci.org/cenksk/CITreeView.svg?branch=master)](https://travis-ci.org/cenksk/CITreeView)
 
