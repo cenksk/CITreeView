@@ -13,7 +13,7 @@ CITreeView created to implement and maintain that wanted TreeView structures for
   s.source           = { :git => 'https://github.com/cenksk/CITreeView.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '10.0'
-  s.source_files = "CITreeView/CITreeViewClasses/*.swift"
+  s.source_files = "CITreeViewClasses/*.swift"
 
 
 end
