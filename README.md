@@ -15,21 +15,6 @@ CITreeView created to implement and maintain that wanted TreeView structures for
 
 ## Installation
 
-### CocoaPods (Recommended)
-
-1. Add additional entry to your Podfile.
-
-```
-pod 'CITreeView', '~> 1.1'
-```
-
-2. Pod Install
-
-```
-pod install
-```
-### Manual
-
 1. Download .zip file
 2. Just drag and drop CITreeViewClasses folder to your project
 
