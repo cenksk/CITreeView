@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol CITreeViewControllerDelegate : NSObjectProtocol {
+public protocol CITreeViewControllerDelegate : NSObjectProtocol {
     func getChildren(forTreeViewNodeItem item:Any, with indexPath:IndexPath) -> [Any]
     func willExpandTreeViewNode(treeViewNode:CITreeViewNode, atIndexPath: IndexPath)
     func willCollapseTreeViewNode(treeViewNode:CITreeViewNode, atIndexPath: IndexPath)
 }
 
-class CITreeViewController:NSObject  {
+public class CITreeViewController:NSObject  {
     
     var treeViewNodes:[CITreeViewNode] = []
     var indexPathsArray:[IndexPath] = []

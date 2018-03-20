@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'CITreeView'
-  s.version          = '1.3.0'
+  s.version          = '1.3.1'
   s.summary          = 'CITreeView created to implement and maintain that wanted TreeView structures for IOS platforms easy way.'
 
   s.description      = <<-DESC
