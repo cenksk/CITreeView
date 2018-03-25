@@ -61,12 +61,14 @@ extension CITreeViewData {
         let child33 = CITreeViewData(name: "Dodge")
         let parent3 = CITreeViewData(name: "Truck", children: [child31, child32,child33])
         
-        let parent4 = CITreeViewData(name: "Van")
-        
-        let subChildChild5321 = CITreeViewData(name: "Carrera")
+        let subChildChild5321 = CITreeViewData(name: "Carrera", children: [child31, child32,child33])
         let subChildChild5322 = CITreeViewData(name: "Carrera 4 GTS")
         let subChildChild5323 = CITreeViewData(name: "Targa 4")
         let subChildChild5324 = CITreeViewData(name: "Turbo S")
+        
+        let parent4 = CITreeViewData(name: "Van",children:[subChildChild5321,subChildChild5322,subChildChild5323,subChildChild5324])
+        
+       
         
         let subChild531 = CITreeViewData(name: "Cayman")
         let subChild532 = CITreeViewData(name: "911",children:[subChildChild5321,subChildChild5322,subChildChild5323,subChildChild5324])
@@ -81,4 +83,6 @@ extension CITreeViewData {
         
         return [parent5,parent2,parent1,parent3,parent4]
     }
+    
+    
 }

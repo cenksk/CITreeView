@@ -48,40 +48,66 @@ public class CITreeView: UITableView {
     func commonInit(){
         super.delegate = self
         super.dataSource = self
-        treeViewController.treeViewControllerDelegate = self as CITreeViewControllerDelegate;
+        treeViewController.treeViewControllerDelegate = self;
         self.backgroundColor = UIColor.clear
     }
     
     override public func reloadData() {
-        treeViewController.treeViewNodes = [CITreeViewNode]()
+        
+        guard let treeViewDataSource = self.treeViewDataSource else {
+            mainDataArray = [CITreeViewNode]()
+            return
+        }
+        
+        if (treeViewDataSource.treeViewDataArray()).count > treeViewController.treeViewNodes.count {
+            mainDataArray = [CITreeViewNode]()
+            for item in treeViewDataSource.treeViewDataArray() {
+                treeViewController.addTreeViewNode(with: item)
+            }
+            mainDataArray = treeViewController.treeViewNodes
+        }
         super.reloadData()
     }
     
+    public func expandAllRows() {
+        treeViewController.expandAllRows()
+        reloadData()
+    }
+    
+    public func collapseAllRows() {
+        treeViewController.collapseAllRows()
+        reloadData()
+    }
+    
     fileprivate func deleteRows() {
-        self.beginUpdates()
-        self.deleteRows(at: treeViewController.indexPathsArray, with: .automatic)
-        self.endUpdates()
+        if treeViewController.indexPathsArray.count > 0 {
+            self.beginUpdates()
+            self.deleteRows(at: treeViewController.indexPathsArray, with: .automatic)
+            self.endUpdates()
+        }
     }
     
     fileprivate func insertRows() {
-        self.beginUpdates()
-        self.insertRows(at: treeViewController.indexPathsArray, with: .automatic)
-        self.endUpdates()
+        if treeViewController.indexPathsArray.count > 0 {
+            self.beginUpdates()
+            self.insertRows(at: treeViewController.indexPathsArray, with: .automatic)
+            self.endUpdates()
+        }
     }
     
     fileprivate func collapseRows(for treeViewNode: CITreeViewNode, atIndexPath indexPath: IndexPath ,completion: @escaping () -> Void) {
-        
+        guard let treeViewDelegate = self.treeViewDelegate else { return }
         if #available(iOS 11.0, *) {
             self.performBatchUpdates({
                 deleteRows()
             }, completion: { (complete) in
-                self.treeViewDelegate?.didCollapseTreeViewNode(treeViewNode: treeViewNode, atIndexPath:indexPath)
+                treeViewDelegate.didCollapseTreeViewNode(treeViewNode: treeViewNode, atIndexPath:indexPath)
                 completion()
             })
         } else {
             CATransaction.begin()
             CATransaction.setCompletionBlock({
-                self.treeViewDelegate?.didCollapseTreeViewNode(treeViewNode: treeViewNode, atIndexPath: indexPath)
+                treeViewDelegate.didCollapseTreeViewNode(treeViewNode: treeViewNode, atIndexPath: indexPath)
                 completion()
             })
             deleteRows()
@@ -90,16 +116,17 @@ public class CITreeView: UITableView {
     }
     
     fileprivate func expandRows(for treeViewNode: CITreeViewNode, withSelected indexPath: IndexPath) {
+        guard let treeViewDelegate = self.treeViewDelegate else {return}
         if #available(iOS 11.0, *) {
             self.performBatchUpdates({
                 insertRows()
             }, completion: { (complete) in
-                self.treeViewDelegate?.didExpandTreeViewNode(treeViewNode: treeViewNode, atIndexPath: indexPath)
+                treeViewDelegate.didExpandTreeViewNode(treeViewNode: treeViewNode, atIndexPath: indexPath)
             })
         } else {
             CATransaction.begin()
             CATransaction.setCompletionBlock({
-                self.treeViewDelegate?.didExpandTreeViewNode(treeViewNode: treeViewNode, atIndexPath: indexPath)
+                treeViewDelegate.didExpandTreeViewNode(treeViewNode: treeViewNode, atIndexPath: indexPath)
             })
             insertRows()
             CATransaction.commit()
@@ -120,34 +147,42 @@ public class CITreeView: UITableView {
 extension CITreeView : UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let treeViewNode = treeViewController.getTreeViewNode(atIndex: indexPath.row)
-        return (self.treeViewDelegate?.treeView(tableView as! CITreeView,heightForRowAt: indexPath,withTreeViewNode :treeViewNode))!
+        guard let treeViewDelegate = self.treeViewDelegate else { return 44 }
+        return treeViewDelegate.treeView(tableView as! CITreeView,heightForRowAt: indexPath,withTreeViewNode :treeViewNode)
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedTreeViewNode = treeViewController.getTreeViewNode(atIndex: indexPath.row)
-        self.treeViewDelegate?.treeView(tableView as! CITreeView, didSelectRowAt: selectedTreeViewNode!)
-        var willExpandIndexPath = indexPath
-        if (selectedTreeViewNode?.expand)! {
-            treeViewController.collapseRows(for: selectedTreeViewNode!, atIndexPath: indexPath)
-            collapseRows(for: self.selectedTreeViewNode!, atIndexPath: indexPath){}
-        }
-        else
-        {
-            if collapseNoneSelectedRows, selectedTreeViewNode?.level == 0, let collapsedTreeViewNode = treeViewController.collapseAllRows(), treeViewController.indexPathsArray.count > 0 {
-                
-                collapseRows(for: collapsedTreeViewNode, atIndexPath: indexPath){
-                    for (index, treeViewNode) in self.mainDataArray.enumerated() {
-                        if treeViewNode == self.selectedTreeViewNode {
-                            willExpandIndexPath.row = index
+        guard let treeViewDelegate = self.treeViewDelegate else { return }
+        
+        if let justSelectedTreeViewNode = selectedTreeViewNode {
+            treeViewDelegate.treeView(tableView as! CITreeView, didSelectRowAt: justSelectedTreeViewNode)
+            var willExpandIndexPath = indexPath
+            if justSelectedTreeViewNode.expand {
+                treeViewController.collapseRows(for: justSelectedTreeViewNode, atIndexPath: indexPath)
+                collapseRows(for: justSelectedTreeViewNode, atIndexPath: indexPath){}
+            }
+            else
+            {
+                if collapseNoneSelectedRows,
+                    selectedTreeViewNode?.level == 0,
+                    let collapsedTreeViewNode = treeViewController.collapseAllRowsExceptOne(),
+                    treeViewController.indexPathsArray.count > 0 {
+                    
+                    collapseRows(for: collapsedTreeViewNode, atIndexPath: indexPath){
+                        for (index, treeViewNode) in self.mainDataArray.enumerated() {
+                            if treeViewNode == justSelectedTreeViewNode {
+                                willExpandIndexPath.row = index
+                            }
                         }
+                        self.treeViewController.expandRows(atIndexPath: willExpandIndexPath, with: justSelectedTreeViewNode, openWithChildrens: false)
+                        self.expandRows(for: justSelectedTreeViewNode, withSelected: indexPath)
                     }
-                    self.treeViewController.expandRows(atIndexPath: willExpandIndexPath, with: self.selectedTreeViewNode!)
-                    self.expandRows(for: self.selectedTreeViewNode!, withSelected: indexPath)
+                    
+                }else{
+                    treeViewController.expandRows(atIndexPath: willExpandIndexPath, with: justSelectedTreeViewNode, openWithChildrens: false)
+                    expandRows(for: justSelectedTreeViewNode, withSelected: indexPath)
                 }
-                
-            }else{
-                treeViewController.expandRows(atIndexPath: willExpandIndexPath, with: selectedTreeViewNode!)
-                expandRows(for: self.selectedTreeViewNode!, withSelected: indexPath)
             }
         }
     }
@@ -155,34 +190,30 @@ extension CITreeView : UITableViewDelegate {
 
 extension CITreeView : UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if (self.treeViewDataSource?.treeViewDataArray())!.count > treeViewController.treeViewNodes.count {
-            mainDataArray = [CITreeViewNode]()
-            for item in (self.treeViewDataSource?.treeViewDataArray())! {
-                treeViewController.addTreeViewNode(with: item)
-            }
-            mainDataArray = treeViewController.treeViewNodes
-        }
         return treeViewController.treeViewNodes.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let treeViewNode = treeViewController.getTreeViewNode(atIndex: indexPath.row)
-        return (self.treeViewDataSource?.treeView(tableView as! CITreeView, atIndexPath: indexPath, withTreeViewNode: treeViewNode))!
+        guard let treeViewDatasource = self.treeViewDataSource else { fatalError() }
+        return treeViewDatasource.treeView(tableView as! CITreeView, atIndexPath: indexPath, withTreeViewNode: treeViewNode)
     }
 }
 
 extension CITreeView : CITreeViewControllerDelegate {
     public func getChildren(forTreeViewNodeItem item: Any, with indexPath: IndexPath) -> [Any] {
-        return (self.treeViewDataSource?.treeViewSelectedNodeChildren(for: item))!
+        guard let treeViewDatasource = self.treeViewDataSource else { return [] }
+        return treeViewDatasource.treeViewSelectedNodeChildren(for: item)
     }
     
     public func willCollapseTreeViewNode(treeViewNode: CITreeViewNode, atIndexPath: IndexPath) {
-        self.treeViewDelegate?.willCollapseTreeViewNode(treeViewNode: treeViewNode, atIndexPath: atIndexPath)
+        guard let treeViewDelegate = self.treeViewDelegate else { return }
+        treeViewDelegate.willCollapseTreeViewNode(treeViewNode: treeViewNode, atIndexPath: atIndexPath)
     }
     
     public func willExpandTreeViewNode(treeViewNode: CITreeViewNode, atIndexPath: IndexPath) {
-        self.treeViewDelegate?.willExpandTreeViewNode(treeViewNode: treeViewNode, atIndexPath: atIndexPath)
+        guard let treeViewDelegate = self.treeViewDelegate else { return }
+        treeViewDelegate.willExpandTreeViewNode(treeViewNode: treeViewNode, atIndexPath: atIndexPath)
     }
 }
 

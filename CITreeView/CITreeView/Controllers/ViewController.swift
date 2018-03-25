@@ -23,8 +23,16 @@ class ViewController: UIViewController {
         treeView.treeViewDelegate = self
         treeView.treeViewDataSource = self
         treeView.collapseNoneSelectedRows = false
+        
         treeView.register(UINib(nibName: treeViewCellNibName, bundle: nil), forCellReuseIdentifier: treeViewCellIdentifier)
         self.view.addSubview(treeView)
+    }
+    
+    @IBAction func reloadBarButtonAction(_ sender: UIBarButtonItem) {
+        treeView.expandAllRows()
+    }
+    @IBAction func collapseAllRowsBarButtonAction(_ sender: UIBarButtonItem) {
+        treeView.collapseAllRows()
     }
 }
 
