@@ -1,9 +1,9 @@
 //
-//  TreeView.swift
-//  TreeViewExample
+//  CITreeViewController.swift
+//  CITreeView
 //
-//  Created by Cenk IŞIK on 11.01.2018.
-//  Copyright © 2018 Cenk IŞIK. All rights reserved.
+//  Created by Apple on 24.01.2018.
+//  Copyright © 2018 Cenk Işık. All rights reserved.
 //
 
 import UIKit
