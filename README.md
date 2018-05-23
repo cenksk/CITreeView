@@ -4,7 +4,7 @@
 CITreeView created to implement and maintain that wanted TreeView structures for IOS platforms easy way. CITreeView provides endless treeview structure. You just add your data to CITreeview datasource.
 
 [![Twitter: @cekjacks](https://img.shields.io/badge/contact-%40cekjacks-blue.svg)](https://twitter.com/cekjacks)
-[![CocoaPods](https://img.shields.io/badge/pod-v1.4-blue.svg)](https://github.com/cenksk/CITreeView)
+[![CocoaPods](https://img.shields.io/badge/pod-v1.6-blue.svg)](https://github.com/cenksk/CITreeView)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](http://cocoadocs.org/docsets/CITreeView)
 [![Build Status](https://travis-ci.org/cenksk/CITreeView.svg?branch=master)](https://travis-ci.org/cenksk/CITreeView)
 
@@ -20,7 +20,7 @@ CITreeView created to implement and maintain that wanted TreeView structures for
 1. Add additional entry to your Podfile.
 
 ```
-pod 'CITreeView', '~> 1.4'
+pod 'CITreeView', '~> 1.6'
 ```
 
 2. Pod Install
@@ -68,12 +68,12 @@ return cell;
 ```
 
 ```
-func treeViewItemChild(andItem item: AnyObject) -> [AnyObject] {
-if let dataObj = item as? YourDataType {
-return dataObj.children
-}
-return []
-}
+func treeViewSelectedNodeChildren(for treeViewNodeItem: AnyObject) -> [AnyObject] {
+        if let dataObj = treeViewNodeItem as? CITreeViewData {
+            return dataObj.children
+        }
+        return []
+    }
 ```
 ```
 func treeViewDataArray() -> [AnyObject] {
@@ -82,7 +82,7 @@ return yourDataArray
 ```
 ```
 func treeView(_ tableView: CITreeView, heightForRowAt indexPath: IndexPath, withTreeViewNode treeViewNode:CITreeViewNode) -> CGFloat {
-return UITableViewAutomaticDimension;
+return UITableViewAutomaticDimension
 }
 ```
 
@@ -103,6 +103,16 @@ func didCollapseTreeViewNode(treeViewNode: CITreeViewNode, atIndexPath: IndexPat
 
 ```
 ciTreeView.collapseNoneSelectedRows = true
+```
+
+### Recently Added Features 
+
+```
+1. connect CITreeView delegate and datasource with interface builder
+2. expand all rows with expandAllRows()
+3. collapse all rows with collapseAllRows()
+4. get parent node of selected node as CITreeViewNode.parentNode
+5. reload data without lose rows states that expanded or collapses with reloadDataWithoutChangingRowStates()
 ```
 
 License
