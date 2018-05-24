@@ -71,17 +71,7 @@ public class CITreeView: UITableView {
         
         super.reloadData()
     }
-    
-//    public func getParentNode(with node:CITreeViewNode) -> CITreeViewNode {
-//        if node.level == 0 {
-//            return node
-//        }else{
-//            return treeViewController.treeViewNodes.contains{treeViewNode in
-//                treeViewNode.item
-//            }
-//        }
-//    }
-    
+
     public func reloadDataWithoutChangingRowStates() {
         
         guard let treeViewDataSource = self.treeViewDataSource else {
