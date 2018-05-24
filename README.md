@@ -4,7 +4,7 @@
 CITreeView created to implement and maintain that wanted TreeView structures for IOS platforms easy way. CITreeView provides endless treeview structure. You just add your data to CITreeview datasource.
 
 [![Twitter: @cekjacks](https://img.shields.io/badge/contact-%40cekjacks-blue.svg)](https://twitter.com/cekjacks)
-[![CocoaPods](https://img.shields.io/badge/pod-v1.6-blue.svg)](https://github.com/cenksk/CITreeView)
+[![CocoaPods](https://img.shields.io/badge/pod-v1.6.1-blue.svg)](https://github.com/cenksk/CITreeView)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](http://cocoadocs.org/docsets/CITreeView)
 [![Build Status](https://travis-ci.org/cenksk/CITreeView.svg?branch=master)](https://travis-ci.org/cenksk/CITreeView)
 
@@ -105,7 +105,7 @@ func didCollapseTreeViewNode(treeViewNode: CITreeViewNode, atIndexPath: IndexPat
 ciTreeView.collapseNoneSelectedRows = true
 ```
 
-### Recently Added Features 
+### Recently Added Features
 
 ```
 1. connect CITreeView delegate and datasource with interface builder
