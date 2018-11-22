@@ -115,8 +115,9 @@ public class CITreeViewController:NSObject  {
         
         if treeViewNodeChildren.count > 0 {
             treeViewControllerDelegate.willCollapseTreeViewNode(treeViewNode: treeViewNode, atIndexPath: indexPath)
-            setCollapseTreeViewNode(atIndex: indexPath.row)
         }
+        
+        setCollapseTreeViewNode(atIndex: indexPath.row)
         
         for _ in treeViewNodeChildren{
             removeIndexPath(withRow: &row, and: indexPath)
