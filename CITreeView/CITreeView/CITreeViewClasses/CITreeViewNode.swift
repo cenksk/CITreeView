@@ -9,12 +9,12 @@
 import UIKit
 
 public final class CITreeViewNode: NSObject {
-    public var parentNode:CITreeViewNode?
-    public var expand:Bool = false
-    public var level:Int = 0
-    public var item:AnyObject
+    public var parentNode: CITreeViewNode?
+    public var expand: Bool = false
+    public var level: Int = 0
+    public var item: Any
     
-    init(item:AnyObject) {
+    init(item: Any) {
         self.item = item
     }
 }
