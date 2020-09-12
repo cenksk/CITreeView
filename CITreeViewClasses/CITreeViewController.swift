@@ -39,7 +39,7 @@ public class CITreeViewController:NSObject  {
     }
     
     func index(of treeViewNode: CITreeViewNode) -> Int? {
-        return treeViewNodes.index(of: treeViewNode)
+        return treeViewNodes.firstIndex(of: treeViewNode)
     }
     
     func insertTreeViewNode(parent parentTreeViewNode:CITreeViewNode, with item:AnyObject, to index : Int)
