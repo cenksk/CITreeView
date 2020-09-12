@@ -38,7 +38,7 @@ public class CITreeView: UITableView {
     fileprivate var mainDataArray:[CITreeViewNode] = []
     
     
-    override public init(frame: CGRect, style: UITableViewStyle) {
+    override public init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         commonInit()
     }
