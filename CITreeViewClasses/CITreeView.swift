@@ -9,14 +9,14 @@
 import UIKit
 
 @objc
-public protocol CITreeViewDataSource: NSObjectProtocol {
+public protocol CITreeViewDataSource {
     func treeView(_ treeView: CITreeView, cellForRowAt indexPath: IndexPath, with treeViewNode: CITreeViewNode) -> UITableViewCell
     func treeViewSelectedNodeChildren(for treeViewNodeItem: Any) -> [Any]
     func treeViewDataArray() -> [Any]
 }
 
 @objc
-public protocol CITreeViewDelegate: NSObjectProtocol {
+public protocol CITreeViewDelegate {
     func treeView(_ treeView: CITreeView, heightForRowAt indexPath: IndexPath, with treeViewNode: CITreeViewNode) -> CGFloat
     func treeView(_ treeView: CITreeView, didSelectRowAt treeViewNode: CITreeViewNode, at indexPath: IndexPath)
     func treeView(_ treeView: CITreeView, didDeselectRowAt treeViewNode: CITreeViewNode, at indexPath: IndexPath)
